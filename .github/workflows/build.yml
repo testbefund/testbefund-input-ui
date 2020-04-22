@@ -22,6 +22,10 @@ jobs:
         uses: CultureHQ/actions-yarn@master
         with:
           args: install
+      - name: swagger
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: swagger-gen
       - name: Build
         uses: CultureHQ/actions-yarn@master
         with:
