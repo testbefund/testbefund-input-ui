@@ -1,0 +1,18 @@
+.test-case-item {
+  margin: 8px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.test-case-item span {
+  margin-right: auto;
+}
+
+
+#load-test-container-button {
+  height: 33px;
+  margin-top: auto;
+  margin-left: 8px;
+}

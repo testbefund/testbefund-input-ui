@@ -1,0 +1,29 @@
+<h4>Testbefund - Testergebnis Eingabe</h4>
+<p>
+  Zur manuellen Eingabe, bitte die Test-ID eingeben. Die Testdaten werden automatisch geladen.
+</p>
+<div style="display: flex; flex-direction: row">
+  <span class="ui-float-label" style="margin-top: 36px">
+    <input type="text" id="input-write-id" size="30" style="width: 400px" pInputText [ngModel]="writeId$ | async"
+           (keydown)="handleKeyDown($event)"
+           (ngModelChange)="handleWriteIdChange($event)"/>
+    <label for="input-write-id">Test-ID</label>
+  </span>
+  <button id="load-test-container-button" type="button" (click)="handleLoadContainer()" pButton label="Neu Laden"></button>
+</div>
+
+<div *ngIf="!!(container$ | async)" style="display: flex; flex-direction: row; flex-wrap: wrap">
+  <div class="test-case-item" *ngFor="let testCase of (container$ | async).testCases">
+    <span>{{testCase.title}}</span>
+    <p-selectButton [options]="availableStates" [ngModel]="testCase.currentStatus"
+                    (ngModelChange)="handleStatusChange($event, testCase)"></p-selectButton>
+  </div>
+</div>
+<div *ngIf="!(container$ | async)" style="margin-top: 16px">
+  <div style="display: flex; flex-direction: column; align-items: center; width: 500px">
+    <img [alt]="'Man with box'" src="/assets/undraw_empty_xct9.svg" style="width: 300px">
+    <h3 *ngIf="(writeId$ | async) === ''">Kein Test Ausgewählt</h3>
+    <h3 *ngIf="(writeId$ | async) !== ''">Test {{writeId$ | async}} nicht gefunden.</h3>
+  </div>
+
+</div>
