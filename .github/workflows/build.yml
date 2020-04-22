@@ -23,18 +23,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-      - name: swagger
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: swagger-gen
-      - name: Build
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build
+      - run: yarn install
+      - run: yarn run swagger-gen
+      - run: yarn run build
       - uses: nelonoel/branch-name@v1
       - name: Build & Push to Github Packages
         uses: zenato/docker-action@v1.0.0
