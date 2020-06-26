@@ -19,10 +19,14 @@ import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {TabMenuModule} from 'primeng/tabmenu';
+import {BASE_PATH} from './generated/testbefund-api';
 
 const reducers: ActionReducerMap<AppState, Action> = {
   testbefund: testbefundReducer
 };
+
+// From docker generated config.js
+declare const TESTBEFUND_API_URL: string;
 
 @NgModule({
   declarations: [
@@ -52,7 +56,15 @@ const reducers: ActionReducerMap<AppState, Action> = {
     ToastModule,
     TabMenuModule
   ],
-  providers: [TestbefundEffects, TestService, MessageService],
+  providers: [
+    TestbefundEffects,
+    TestService,
+    MessageService,
+    {
+      provide: BASE_PATH,
+      useValue: TESTBEFUND_API_URL
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
