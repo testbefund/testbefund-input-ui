@@ -33,7 +33,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: "docker.pkg.github.com"
-          repository: 1-011-c/testbefund-input-ui/testbefund-input-ui
+          repository: testbefund/testbefund-input-ui/testbefund-input-ui
           tag: ${{env.BRANCH_NAME}}
       - name: Build & Push to Docker Hub
         uses: zenato/docker-action@v1.0.0
