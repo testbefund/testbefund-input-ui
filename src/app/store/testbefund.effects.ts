@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {EMPTY} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {TestService} from '../service/test.service';
+import {TestbefundApiService} from '../service/testbefund-api.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {TestbefundActions} from './testbefund.actions';
 import {map, switchMap, withLatestFrom} from 'rxjs/operators';
@@ -24,6 +24,6 @@ export class TestbefundEffects {
     switchMap(([action, writeId]) => this.testService.updateTest(writeId, action.testCase, action.status)),
   ));
 
-  constructor(private actions$: Actions, private store: Store<AppState>, private testService: TestService) {
+  constructor(private actions$: Actions, private store: Store<AppState>, private testService: TestbefundApiService) {
   }
 }

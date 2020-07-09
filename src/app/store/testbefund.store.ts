@@ -1,8 +1,8 @@
-import {TestContainerWriteT} from '../generated/testbefund-api';
+import {TestbefundTestContainer} from '../generated/testbefund-api';
 
 export interface TestbefundStore {
   writeId: string;
-  currentContainer: TestContainerWriteT;
+  currentContainer: TestbefundTestContainer;
 }
 
 export const testbefundDefaultStore: TestbefundStore = {

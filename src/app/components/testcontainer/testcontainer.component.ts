@@ -4,11 +4,15 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../app.state';
 import {TestbefundSelectors} from '../../store/testbefund.selectors';
 import {TestbefundActions} from '../../store/testbefund.actions';
-import {TestContainerWriteT} from '../../generated/testbefund-api';
 import {SelectItem} from 'primeng/api';
-import {TestCase} from '../../generated/testbefund-api/model/testCase';
 import {ActivatedRoute, Router} from '@angular/router';
 import {debounceTime, map} from 'rxjs/operators';
+import {
+  TestbefundFindingResult,
+  TestbefundFindingStatus,
+  TestbefundTest,
+  TestbefundTestContainer
+} from '../../generated/testbefund-api';
 
 @Component({
   selector: 'app-testcontainer',
@@ -18,22 +22,22 @@ import {debounceTime, map} from 'rxjs/operators';
 export class TestcontainerComponent implements OnInit, OnDestroy {
 
   writeId$: Observable<string>;
-  container$: Observable<TestContainerWriteT>;
+  container$: Observable<TestbefundTestContainer>;
 
   writeIdsFromRoute$: Observable<string>;
   writeIdsFromInput$: Subject<string> = new Subject();
 
   availableStates: SelectItem[] = [
     {
-      value: 'ISSUED',
+      value: 'UNKNOWN',
       label: 'Ausgestellt'
     },
     {
-      value: 'CONFIRM_POSITIVE',
+      value: 'POSITIVE',
       label: 'Positiv'
     },
     {
-      value: 'CONFIRM_NEGATIVE',
+      value: 'NEGATIVE',
       label: 'Negativ'
     },
   ];
@@ -72,7 +76,7 @@ export class TestcontainerComponent implements OnInit, OnDestroy {
     this.store.dispatch(TestbefundActions.loadCurrentContainer());
   }
 
-  handleStatusChange(status: TestCase.CurrentStatusEnum, testCase: TestCase) {
+  handleStatusChange(status: TestbefundFindingResult, testCase: TestbefundTest) {
     this.store.dispatch(TestbefundActions.updateTest({testCase, status}));
   }
 

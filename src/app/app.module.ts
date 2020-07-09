@@ -13,7 +13,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {FormsModule} from '@angular/forms';
 import {TestbefundEffects} from './store/testbefund.effects';
-import {TestService} from './service/test.service';
+import {TestbefundApiService} from './service/testbefund-api.service';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {ToastModule} from 'primeng/toast';
@@ -58,7 +58,7 @@ declare const TESTBEFUND_API_URL: string;
   ],
   providers: [
     TestbefundEffects,
-    TestService,
+    TestbefundApiService,
     MessageService,
     {
       provide: BASE_PATH,
